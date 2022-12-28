@@ -4,6 +4,8 @@ import userRoutes from "./routes/userRoutes.js";
 import roleRoutes from "./routes/roleRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 
+import checkMethod from "./middlewares/checkMethod.js";
+
 const app = express();
 
 try {
@@ -17,6 +19,6 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/roles", roleRoutes);
-app.use("/api/tasks", taskRoutes);
+app.use("/api/tasks", checkMethod, taskRoutes);
 
 app.listen(3000);
